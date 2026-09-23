@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/theme/cinemate_theme.dart';
-import '../widgets/auth_bottom_prompt.dart';
-import '../widgets/auth_divider.dart';
-import '../widgets/auth_primary_button.dart';
-import '../widgets/auth_scaffold.dart';
-import '../widgets/auth_social_button.dart';
-import '../widgets/auth_text_field.dart';
-import '../widgets/cinemate_logo.dart';
+import '../../../../../core/di/service_locaor.dart';
+import '../../../../../core/theme/cinemate_theme.dart';
+import '../../cubit/register_cubit.dart';
+import 'create_account_screen.dart';
+import '../../widgets/auth_bottom_prompt.dart';
+import '../../widgets/auth_divider.dart';
+import '../../widgets/auth_primary_button.dart';
+import '../../widgets/auth_scaffold.dart';
+import '../../widgets/auth_social_button.dart';
+import '../../widgets/auth_text_field.dart';
+import '../../widgets/cinemate_logo.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const AuthScaffold(
+    return AuthScaffold(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -72,6 +76,16 @@ class SignInScreen extends StatelessWidget {
           AuthBottomPrompt(
             prefix: "Don't have an account? ",
             action: 'Create Account',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => BlocProvider(
+                    create: (_) => getIt<RegisterCubit>(),
+                    child: const CreateAccountScreen(),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),

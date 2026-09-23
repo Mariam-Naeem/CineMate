@@ -8,6 +8,8 @@ class AuthTextField extends StatelessWidget {
     required this.hint,
     required this.icon,
     this.suffixIcon,
+    this.controller,
+    this.keyboardType,
     super.key,
   });
 
@@ -15,6 +17,8 @@ class AuthTextField extends StatelessWidget {
   final String hint;
   final IconData icon;
   final IconData? suffixIcon;
+  final TextEditingController? controller;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +37,8 @@ class AuthTextField extends StatelessWidget {
         SizedBox(
           height: 42,
           child: TextField(
+            controller: controller,
+            keyboardType: keyboardType,
             obscureText: suffixIcon != null,
             style: const TextStyle(color: CinemateColors.text, fontSize: 11),
             decoration: InputDecoration(

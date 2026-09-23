@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'core/di/service_locaor.dart';
 import 'core/theme/cinemate_theme.dart';
-import 'feature/auth/presentation/screens/sign_in_screen.dart';
+import 'feature/auth/presentation/ui/screens/sign_in_screen.dart';
 
-export 'feature/auth/presentation/screens/create_account_screen.dart';
-export 'feature/auth/presentation/screens/sign_in_screen.dart';
+export 'feature/auth/presentation/ui/screens/create_account_screen.dart';
+export 'feature/auth/presentation/ui/screens/sign_in_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
   runApp(const CinemateApp());
 }
 
